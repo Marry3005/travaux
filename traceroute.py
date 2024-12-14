@@ -18,6 +18,7 @@ ip_pattern = re.compile(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b|(?:[a-fA-F0-9]{1,4}:
 output_file = None
 if args.output_file:
     output_file = open(args.output_file, "w", encoding="utf-8")
+    print(f"Résultat du traceroute sera écrit dans le fichier: {args.output_file}")
 
 try:
     with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as process:
@@ -33,6 +34,7 @@ try:
             #Ecrire dans le fichier si option -o fournie
             if output_file:
                 output_file.write(line + "\n")
+                print(f"Ajout de la ligne au fichier: {line}")
 
             #rechercher les IPs dans la ligne
             match = ip_pattern.findall(line)
@@ -45,6 +47,7 @@ try:
                     #Ecrire les IPs dans le fichier si option -o activée
                     if output_file:
                         output_file.write(f"IP trouvée: {ip}\n")
+                        print(f"Ajout de l'IP au fichier: {ip}")
 
     # vérification erreur
     return_code = process.wait()
@@ -59,3 +62,4 @@ except Exception as e:
 finally:
     if output_file:
         output_file.close()
+        print(f"Le fichier a été correctement fermé et sauvegardé: {args.output_file}")
