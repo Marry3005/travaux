@@ -32,8 +32,11 @@ def main():
             try:
                 column, value = args.rechercher
                 dataframe = pd.read_csv(args.output)
-                search_stock(dataframe, column, value)
-                print(f"Recherche effectuée pour {value} dans la colonne {column}")
+                results = search_stock(dataframe, column, value)
+                # Si aucun résultat n'a été trouvé (ou une colonne manquante)
+                if results is None or results.empty:
+                    pass
+
             except FileNotFoundError as e:
                 print(f"Erreur : Le fichier '{args.output}' n'a pas été trouvé. {e}")
             except pd.errors.EmptyDataError as e:

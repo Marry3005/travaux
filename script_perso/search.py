@@ -5,13 +5,15 @@ def search_stock(dataframe, column, value):
     try:
         # Vérifie que la colonne existe
         if column not in dataframe.columns:
-            raise KeyError(f"La colonne '{column}' n'existe pas dans le DataFrame.")
+            print(f"La colonne '{column}' n'existe pas dans le DataFrame.")
+            return None
 
         #recherche éléments dans la colonne donnée
         results = dataframe[dataframe[column].astype(str).str.contains(value, case=False, na=False)]
         if results.empty:
             print(f"Aucun résultat trouvé pour la valeur '{value}' dans la colonne '{column}'.")
         else:
+            print(f"Recherche effectuée pour {value} dans la colonne {column}")
             print(results)
         return results
 
