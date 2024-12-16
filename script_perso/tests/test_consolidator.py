@@ -7,7 +7,7 @@ class TestConsolidator(unittest.TestCase):
 
     def test_load_stock_files(self):
         # Définir le répertoire des fichiers CSV existants
-        
+
         # Générer le chemin absolu vers le dossier stocks
         base_dir = os.path.dirname(os.path.dirname(__file__))  # Aller au dossier parent de 'tests'
         directory = os.path.join(base_dir, "stocks")  # Chemin absolu vers 'stocks'

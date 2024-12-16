@@ -19,5 +19,7 @@ def search_stock(dataframe, column, value):
 
     except KeyError as e:
         print(f"Erreur : {e}")
+        return None
     except Exception as e:
         print(f"Une erreur inattendue est survenue lors de la recherche dans le stock : {e}")
+        return None
