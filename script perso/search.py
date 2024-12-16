@@ -14,7 +14,7 @@ def search_stock(dataframe, column, value):
         else:
             print(results)
         return results
-    
+
     except KeyError as e:
         print(f"Erreur : {e}")
     except Exception as e:
