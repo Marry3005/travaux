@@ -42,9 +42,9 @@ def save_consolidated_stock(dataframe, output_file):
         print(f"Le fichier consolidé a été sauvegardé dans {output_file}.")
 
     except PermissionError as e:
-    print(f"Erreur de permission : Impossible d'écrire dans le fichier '{output_file}'. {e}")
+        print(f"Erreur de permission : Impossible d'écrire dans le fichier '{output_file}'. {e}")
     except FileNotFoundError as e:
-    print(f"Erreur : Le répertoire pour sauvegarder le fichier '{output_file}' n'a pas été trouvé. {e}")
+        print(f"Erreur : Le répertoire pour sauvegarder le fichier '{output_file}' n'a pas été trouvé. {e}")
     except Exception as e:
-    print(f"Une erreur inattendue est survenue lors de la sauvegarde du fichier : {e}")
+        print(f"Une erreur inattendue est survenue lors de la sauvegarde du fichier : {e}")
 
