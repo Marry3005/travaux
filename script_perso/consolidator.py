@@ -10,17 +10,10 @@ def load_stock_files(directory):
         all_files = [os.path.join(directory, f) for f in os.listdir(directory) if f.endswith('.csv')]
 
         if not all_files:
-            raise ValueError(f"Aucun fichier CSV trouvé dans le répertoire '{directory}'.")
+            raise FileNotFoundError(f"Aucun fichier CSV trouvé dans le répertoire '{directory}'.")
 
         # Lire chaque fichier CSV et créer une liste de DataFrames.
-        dataframes = []
-        for file in all_files:
-            try:
-                df = pd.read_csv(file)
-                dataframes.append(df)
-            except pd.errors.ParserError as e:
-                print(f"Erreur de parsing du fichier {file}: {e}")
-                continue  # Ignore ce fichier et passe au suivant
+        dataframes = [pd.read_csv(file) for file in all_files]
 
         # Combine tous les DataFrames en un seul.
         if not dataframes:

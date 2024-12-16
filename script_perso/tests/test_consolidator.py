@@ -7,12 +7,19 @@ class TestConsolidator(unittest.TestCase):
 
     def test_load_stock_files(self):
         # Définir le répertoire des fichiers CSV existants
-        directory = "stocks"  # Répertoire contenant les fichiers CSV de test
+        
+        # Générer le chemin absolu vers le dossier stocks
+        base_dir = os.path.dirname(os.path.dirname(__file__))  # Aller au dossier parent de 'tests'
+        directory = os.path.join(base_dir, "stocks")  # Chemin absolu vers 'stocks'
+
+        # Vérifier que le répertoire existe
+        self.assertTrue(os.path.exists(directory), f"Le répertoire '{directory}' n'existe pas.")
 
         # Charger les fichiers CSV dans un DataFrame consolidé
         result = load_stock_files(directory)
 
         # Vérifier que les données ont été correctement consolidées
+        self.assertIsNotNone(result, "La fonction load_stock_files a retourné None.")
         self.assertGreater(len(result), 0)  # Vérifier qu'il y a des données dans le DataFrame
         self.assertTrue('produit' in result.columns)  # Vérifier que la colonne "produit" existe
 
