@@ -4,7 +4,7 @@ from consolidator import load_stock_files, save_consolidated_stock
 from search import search_stock
 from report import generate_report
 
-STOCK_SIRECTORY = "stocks"
+STOCK_DIRECTORY = "stocks"
 REPORT_FILE = "stock_report.csv"
 
 def main():
@@ -26,9 +26,9 @@ def main():
                     - `Exception` : Erreur générale si une autre exception inattendue survient.
             """
             try:
-                dataframe = load_stock_files(STOCK_SIRECTORY)
+                dataframe = load_stock_files(STOCK_DIRECTORY)
                 save_consolidated_stock(dataframe, args.output)
-                print(f"Les fichiers de {STOCK_SIRECTORY} ont été consolidés dans {args.output}")
+                print(f"Les fichiers de {STOCK_DIRECTORY} ont été consolidés dans {args.output}")
             except FileNotFoundError as e:
                 print(f"Erreur : Le répertoire des fichiers de stock '{STOCK_DIRECTORY}' n'a pas été trouvé. {e}")
             except PermissionError as e:
