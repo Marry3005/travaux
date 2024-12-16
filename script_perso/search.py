@@ -1,7 +1,22 @@
 import pandas as pd
 
 def search_stock(dataframe, column, value):
-    """Recherche des éléments dans le stock selon une colonne et une valeur."""
+    """Recherche des éléments dans le stock selon une colonne et une valeur.
+
+        PRE :
+            - Vérification que le DataFrame `dataframe` est bien chargé et contient des données.
+            - Vérification que la colonne `column` existe dans le DataFrame.
+
+        POST :
+            - Si la colonne existe et que des résultats sont trouvés, ils sont retournés et affichés.
+            - Si aucun résultat n'est trouvé, un message est affiché indiquant qu'aucun élément n'a été trouvé.
+            - Si la colonne n'existe pas, un message est affiché pour indiquer l'absence de cette colonne.
+
+        RAISE :
+            - `KeyError` : Si une erreur se produit lors de l'accès aux colonnes du DataFrame (par exemple, si la colonne n'existe pas).
+            - `Exception` : Si une autre erreur inattendue se produit durant la recherche, comme un problème avec les types de données ou d'autres erreurs liées à l'exécution de la recherche.
+    """
+
     try:
         # Vérifie que la colonne existe
         if column not in dataframe.columns:

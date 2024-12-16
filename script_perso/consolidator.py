@@ -2,7 +2,20 @@ import os
 import pandas as pd
 
 def load_stock_files(directory):
-    """Charge les fichiers CSV depuis un répertoire donné et les consolide."""
+    """Charge les fichiers CSV depuis un répertoire donné et les consolide.
+        PRE :
+            - Vérification que le répertoire spécifié existe.
+            - Vérification que le répertoire contient des fichiers CSV valides.
+
+        POST :
+            - Retourne un DataFrame consolidé contenant toutes les données des fichiers CSV.
+            - Si des fichiers sont trouvés et chargés correctement, retourne un DataFrame consolidé.
+
+        RAISE :
+            - `FileNotFoundError` : Si le répertoire n'existe pas ou si aucun fichier CSV n'est trouvé dans le répertoire.
+            - `ValueError` : Si aucun fichier CSV valide n'a été chargé.
+            - `Exception` : Si une erreur inattendue survient pendant la lecture des fichiers CSV ou la consolidation.
+    """
     try:
         if not os.path.exists(directory):
             raise FileNotFoundError(f"Le répertoire '{directory}' n'existe pas.")
@@ -29,7 +42,21 @@ def load_stock_files(directory):
         print(f"Une erreur inattendue est survenue lors du chargement des fichiers : {e}")
 
 def save_consolidated_stock(dataframe, output_file):
-    """Sauvegarde le DataFrame consolidé dans un fichier CSV."""
+    """Sauvegarde le DataFrame consolidé dans un fichier CSV.
+        PRE :
+            - Vérification que le DataFrame passé en argument contient des données valides.
+            - Vérification que le chemin vers le fichier de sortie est valide.
+
+        POST :
+            - Sauvegarde le DataFrame consolidé dans le fichier spécifié.
+            - Confirme la réussite de la sauvegarde par un message.
+
+        RAISE :
+            - `PermissionError` : Si le fichier de sortie ne peut être écrit à cause d'un problème de permission.
+            - `FileNotFoundError` : Si le répertoire pour sauvegarder le fichier n'existe pas.
+            - `Exception` : Si une erreur inattendue survient pendant la sauvegarde du fichier.
+
+    """
     try:
         dataframe.to_csv(output_file, index=False)
         print(f"Le fichier consolidé a été sauvegardé dans {output_file}.")
