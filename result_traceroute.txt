@@ -1,15 +1,4 @@
-
-D‚termination de l'itin‚raire vers www.google.com [2a00:1450:400e:805::2004]
-IP trouvée: 2a00:1450:400e:805
-avec un maximum de 5 sautsÿ:
-
-1     4 ms     1 ms     1 ms  2a02:a03f:c09b:6701:ce00:f1ff:fe78:d462
-IP trouvée: 2a02:a03f:c09b:6701:ce00:f1ff:fe78:d462
-2     *        *        *     D‚lai d'attente de la demande d‚pass‚.
-3     *        *        *     D‚lai d'attente de la demande d‚pass‚.
-4    10 ms    10 ms    10 ms  ae-74-106.ibrstr6.isp.proximus.be [2a02:a000:1:fff3::1]
-IP trouvée: 2a02:a000:1:fff3
-5    10 ms    10 ms    11 ms  ae-2-1000.ibrstr5.isp.proximus.be [2a02:a000:1:fff9::]
-IP trouvée: 2a02:a000:1:fff9
-
-Itin‚raire d‚termin‚.
+2a00:1450:400e:800
+2a02:a03f:c09b:6701:ce00:f1ff:fe78:d462
+2a02:a000:1:fff3
+2a02:a000:1:fff1

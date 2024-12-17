@@ -11,14 +11,12 @@ args = parser.parse_args()
 
 # Exécution commande tracert (équivalent de traceroute)
 command = ["tracert", "-h", "5", "www.google.com"]
-
 #Expression régulière pour extraire les IPs (IPv4 et IPv6)
 ip_pattern = re.compile(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b|(?:[a-fA-F0-9]{1,4}:){2,7}[a-fA-F0-9]{1,4}\b")
 
 output_file = None
 if args.output_file:
     output_file = open(args.output_file, "w", encoding="utf-8")
-    print(f"Résultat du traceroute sera écrit dans le fichier: {args.output_file}")
 
 try:
     with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True) as process:
@@ -26,28 +24,15 @@ try:
 
         #lire la sortie ligne par ligne
         for line in process.stdout:
-            line = line.strip()
-            #affichier ligne fur et à mesure si l'option -p activée
-            if args.progressive:
-                print(line)
-
-            #Ecrire dans le fichier si option -o fournie
-            if output_file:
-                output_file.write(line + "\n")
-                print(f"Ajout de la ligne au fichier: {line}")
-
-            #rechercher les IPs dans la ligne
             match = ip_pattern.findall(line)
-            if match:
-                for ip in match:
-                    #afficher IPs au fur et à mesure si option -p est activée
-                    if args.progressive:
-                        print(f"IP trouvée: {ip}")
+            for ip in match:
+                # Afficher uniquement l'IP si l'option -p est activée
+                if args.progressive:
+                    print(ip)
 
-                    #Ecrire les IPs dans le fichier si option -o activée
-                    if output_file:
-                        output_file.write(f"IP trouvée: {ip}\n")
-                        print(f"Ajout de l'IP au fichier: {ip}")
+                # Écrire uniquement l'IP dans le fichier si l'option -o est fournie
+                if output_file:
+                    output_file.write(ip + "\n")
 
     # vérification erreur
     return_code = process.wait()
