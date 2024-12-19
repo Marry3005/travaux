@@ -121,8 +121,6 @@ class Fichier:
         self.taille = taille
         self.type_mime = type_mime
 
-    def __str__(self):
-        return f"Fichier(nom={self.nom}, taille={self.taille}Ko, type_mime={self.type_mime})"
 
 class Email:
     def __init__(self, expediteur: str, destinataire: str, titre: Optional[str] = None, texte: Optional[str] = None, fichiers_joins: Optional[List[Fichier]] = None):
@@ -135,8 +133,3 @@ class Email:
     def ajouter_fichier(self, fichier: Fichier):
         """Ajoute un fichier joint à l'email."""
         self.fichiers_joins.append(fichier)
-
-    def __str__(self):
-        fichiers = ", ".join(str(fichier) for fichier in self.fichiers_joins)
-        return (f"Email(expediteur={self.expediteur}, destinataire={self.destinataire}, "
-                f"titre={self.titre}, texte={self.texte}, fichiers_joins=[{fichiers}])")
